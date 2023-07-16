@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class CustomerTopicListener {
 
-    @KafkaListener(topics = "${customer.topic.name}")
+    @KafkaListener(topics = "${customer.topic.name}", concurrency = "${customer.topic.partitions.amount}")
     public void consume(Customer customer) {
         log.info("Got message {}", customer);
     }

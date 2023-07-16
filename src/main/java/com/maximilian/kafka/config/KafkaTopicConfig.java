@@ -10,13 +10,19 @@ public class KafkaTopicConfig {
 
     @Value("${customer.topic.name}")
     private String topicName;
+    @Value("${customer.topic.partitions.amount}")
+    private int partitions;
 
     @Bean
     public NewTopic createTopic() {
-        return new NewTopic(topicName, 1, (short) 1);
+        return new NewTopic(topicName, partitions, (short) 2);
     }
 
     public String getTopicName() {
         return topicName;
+    }
+
+    public int getPartitions() {
+        return partitions;
     }
 }

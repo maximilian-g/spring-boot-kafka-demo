@@ -24,7 +24,7 @@ public class CustomerService {
         kafkaTemplate.send(kafkaTopicConfig.getTopicName(), customer)
                 .addCallback(result -> {
                     if (result != null) {
-                        log.info("Successfully sent, key = " + result.getProducerRecord().key());
+                        log.info("Sent message to partition " + result.getRecordMetadata().partition());
                     }
                 }, ex -> log.error("Got error ", ex));
     }
